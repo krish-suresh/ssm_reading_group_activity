@@ -23,8 +23,9 @@ num_steps = int((t_end - t_start) / dt)
 A = ... # TODO Fill in the dynamics matrix here
 B = ... # TODO Fill in the control matrix here
 
-def state_update(state, u, dt):
-    # TODO Replace the line below with the state update equation
+def discrete_state_update(state, u, dt):
+    # TODO Replace the line below with the discrete state update equation
+    # The output should be the state at the next time step (not the derivative of the state)
     raise NotImplementedError("Remove this error and complete the state update function")
 
 # Initial state
@@ -77,7 +78,7 @@ fig.canvas.mpl_connect('key_press_event', on_key)
 def update(frame):
     global x
     if frame > 0:
-        x[:, frame] = state_update(x[:, frame-1], u, dt)
+        x[:, frame] = discrete_state_update(x[:, frame-1], u, dt)
     
     # Update the position of the box and spring
     box.set_x(x[0, frame] - 0.2)  # Update box position
